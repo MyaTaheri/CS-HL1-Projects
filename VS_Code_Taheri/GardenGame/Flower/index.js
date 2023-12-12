@@ -1,5 +1,5 @@
 const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+const c = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -14,7 +14,7 @@ function Flower(centerX, centerY, radius, numPetals, color){
 
 // Define Flower draw method
 Flower.prototype.draw = function(){
-    ctx.beginPath();
+    c.beginPath();
     
     // draw petals
     for (var n = 0; n < this.numPetals; n++) {
@@ -26,19 +26,19 @@ Flower.prototype.draw = function(){
         var x2 = (this.radius * Math.sin(theta2)) + this.centerX;
         var y2 = (this.radius * Math.cos(theta2)) + this.centerY;
         
-        ctx.moveTo(this.centerX, this.centerY);
-        ctx.bezierCurveTo(x1, y1, x2, y2, this.centerX, this.centerY);
+        c.moveTo(this.centerX, this.centerY);
+        c.bezierCurveTo(x1, y1, x2, y2, this.centerX, this.centerY);
     }
     
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
+    c.closePath();
+    c.fillStyle = this.color;
+    c.fill();
     
     // draw yellow center
-    ctx.beginPath();
-    ctx.arc(this.centerX, this.centerY, this.radius / 5, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
+    c.beginPath();
+    c.arc(this.centerX, this.centerY, this.radius / 5, 0, 2 * Math.PI, false);
+    c.fillStyle = "yellow";
+    c.fill();
 };
 
 window.onload = function(){
