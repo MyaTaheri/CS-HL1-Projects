@@ -1,0 +1,14 @@
+Program 1: Learning shapes (rectangle, circle, and triangles)
+Program 2: Opacity + for loops
+Program 3: Random Colors + start of spikeBall
+Program 4: Different spikeBall methods
+Assignment 1: Draw a star, a tic-tac-toe, and spikeBall
+Extra Program 5: Uses input textbox to create a spikeBall
+Extra Program 6: Moves block using buttons
+Extra Program 7: Move frog using arrow keys
+Extra Program 8: Chasing game with 2 characters (similar to pacman)
+Program 9: Falling Blocks (Tetris)
+Program 10: Bouncing Ball
+AssignmentTwo: Air Hockey
+AssignmentThree: Firework
+
