@@ -1,0 +1,64 @@
+<meta http-equiv="Content-Language" content="th" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html>
+<html lang = "es-ES">
+    <head>
+        <title>Typing Game -- Don't Let Snyder In</title>
+        <style>
+            body{
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                background-color: rgb(129, 194, 194);
+            }
+            .moving_words{
+                position: absolute;
+                white-space: nowrap;
+                font-size: 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color:rgb(34, 23, 113);
+            }
+            #snyder {
+                position:absolute;
+                top: 0;
+                left: 0;
+            }
+            h1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 24px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .center {
+                border: 5px solid;
+                position: absolute;
+                top: 90%;
+                transform: translate(0, -50%);
+                padding: 10px;
+            }
+            button
+            {
+                background-color: rgb(218, 185, 238);
+                /* border:rgb(35, 28, 126); */
+                text-align: center;
+                height:50px;
+                width: 100px;
+                position: absolute;
+                top: 90%;
+                left: 70%;
+                transform: translate(0, -50%);
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src = "house.png" alt = "house icon" width = 100 height = 100>
+        <h1><div class = "center" id="output"></div></h1>
+        <h1><div class = "center" id="output"></div></h1>
+
+        <canvas></canvas>
+        <script src = "index.js"></script>
+        
+    </body>
+</html>
