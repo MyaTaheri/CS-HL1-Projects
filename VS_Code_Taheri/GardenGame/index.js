@@ -100,7 +100,6 @@ function dFlower(centerX, centerY, radius, numPetals, color){
 
 }
 
-
 //Class Functions
 class Flower
 {
@@ -124,6 +123,10 @@ class Flower
       update()
       {
         this.draw();
+        if (this.x > canvas.width)
+        {
+            this.x = 0;
+        }
         this.x += this.velocity;
         this.y = canvas.height - (Math.sin(this.x * 0.030) * 30) - 160;
       }
@@ -179,14 +182,13 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-//TODO: Make an array so its continous
-flower01 = new Flower (1, 0, 500, 2.5, colorArray[randomColor()]);
-flower02 = new Flower (1, 75, 500, 2.5, colorArray[randomColor()]);
-flower03 = new Flower (1, 150, 500, 2.5, colorArray[randomColor()]);
-flower04 = new Flower (1, 225, 500, 2.5, colorArray[randomColor()]);
-flower05 = new Flower (1, 300, 500, 2.5, colorArray[randomColor()]);
-flower06 = new Flower (1, 375, 500, 2.5, colorArray[randomColor()]);
-flower07 = new Flower (1, 450, 500, 2.5, colorArray[randomColor()]);
+function init()
+{
+  for(let k = 0; k < 19; k++)
+  {
+    flowers.push(new Flower(k, 0 + 75 * k, 500, 2.5, colorArray[randomColor()]))
+  }
+}
 
 rCloud = new rainCloud (canvas.width / 2, 0)
 
@@ -194,17 +196,14 @@ function animate() {
     window.requestAnimationFrame(animate);
     score++;
     background();
-    flower01.update();
-    flower02.update();
-    flower03.update();
-    flower04.update();
-    flower05.update();
-    flower06.update();
-    flower07.update();
+    flowers.forEach((flower,i)=>{
+        flower.update();
+    });
     
 
     rCloud.update();
 }
+init();
 animate();
 
 
