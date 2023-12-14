@@ -7,6 +7,7 @@ score = 0; // 60Hz Cycle
 const imageCloud = new Image();
 imageCloud.src = 'cloud.png';
 
+
 let flowers = [];
 var colorArray = [
     "#42d4f5",
@@ -24,6 +25,7 @@ var colorArray = [
     "#d16d77",
     "#c979b7"
 ];
+var rainDropArray = []
 
 //Draw Functions:
 
@@ -64,7 +66,6 @@ function hills()
 function randomColor()
 {
     return Math.round(Math.random()*colorArray.length-1);
-    console.log(Math.round(Math.random()*colorArray.length-1))
 }
 
 function dFlower(centerX, centerY, radius, numPetals, color){
@@ -132,7 +133,7 @@ class Flower
       }
 }
 
-class rainCloud
+class RainCloud
 {
     constructor(x,velocity)
     {
@@ -146,7 +147,8 @@ class rainCloud
 
       launch()
       {
-        console.log("launch!")
+        if (rainDropArray.length < 5)
+        rainDropArray.push(new Rain(this.x + 75 , 150, 0.5));
       }
 
       update()
@@ -156,6 +158,52 @@ class rainCloud
           this.velocity *= -1;
         this.x -= this.velocity;
       }
+}
+
+class Rain
+{
+    constructor(x, y, rainVelocity)
+    {
+        this.x = x;
+        this.y = y;
+        this.velocity = rainVelocity;
+    }
+    draw()
+    {
+        c.beginPath();
+        c.fillStyle = "blue";
+        c.arc(this.x,this.y, 4, 0, 2*Math.PI, false)
+        c.fill();
+        c.closePath();
+    }
+    update()
+    {
+        this.draw();
+        this.check();
+        this.y = this.y + this.velocity;
+        this.velocity = this.velocity + 0.05;
+        if (this.y > canvas.height - (Math.sin(this.x * 0.03) * 30) - 150)
+        {
+            rainDropArray.shift();
+        }
+    }
+    check()
+    {
+        for (let f = 0; f < flowers.length; f++)
+        {
+            var flowerX = flowers[f].x;
+            var flowerY = flowers[f].y;
+            console.log("FlowerX: " + flowerX + ", FlowerY:" + flowerY);
+            console.log("rainX: " + this.x + ", rainY:" + this.y);
+
+            if (flowerX + 10 > this.x && flowerX - 10 < this.x
+                && flowerY + 10 > this.y && flowerY - 10 < this.y)
+            {
+                console.log("hit");
+                flowers.splice(f,1);
+            }
+        }
+    }
 }
 
 
@@ -169,28 +217,21 @@ window.addEventListener('keyup', (e) => {
         case 'ArrowRight':
             rCloud.velocity = -2;
             break;
-    }
-});
-
-window.addEventListener('keydown', (e) => {
-    switch(event.key)
-    {
-        case 'Shift':
-            console.log("shift");
-            rCloud.launch();
-            break;
+        case ' ':
+                rCloud.launch();
+                break;
     }
 });
 
 function init()
 {
-  for(let k = 0; k < 19; k++)
+  for(let k = 0; k < Math.floor(canvas.width / 75); k++)
   {
     flowers.push(new Flower(k, 0 + 75 * k, 500, 2.5, colorArray[randomColor()]))
   }
 }
 
-rCloud = new rainCloud (canvas.width / 2, 0)
+rCloud = new RainCloud (canvas.width / 2, 0)
 
 function animate() {
     window.requestAnimationFrame(animate);
@@ -199,9 +240,23 @@ function animate() {
     flowers.forEach((flower,i)=>{
         flower.update();
     });
+    rainDropArray.forEach((rain)=> {rain.update()})
     
 
     rCloud.update();
+    for (let j = 0; j < rainDropArray.length; j++)
+    {
+        rainDropArray[j].update();
+    }
+
+    if (flowers.length === 0)
+    {
+        c.font = "40px sans-serif";
+        c.fillStyle = "#3155a8";
+        c.fillText("You Win!", canvas.width / 2 - 75, canvas.height * 0.3)
+        rCloud.x = canvas.width / 2 - 75;
+        rCloud.velocity = 0;
+    }
 }
 init();
 animate();
