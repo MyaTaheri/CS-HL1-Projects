@@ -3,10 +3,20 @@ const c = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 score = 0; // 60Hz Cycle
+start = new Date();
+rainDropped = 0;
 
 const imageCloud = new Image();
 imageCloud.src = 'cloud.png';
+const cactusImage = new Image();
+cactusImage.src = 'cactus.png';
 
+window.alert("Instructions! \nYou are the rain cloud and can move side to side with the arrow key. You're goal is to rain on the flowers but not the cacti. To rain, use the space bar and only 3 can spawn at one time. Good luck!");
+
+
+//TODO:
+// Cactus path
+// Figure out how cactus plays part in game
 
 let flowers = [];
 var colorArray = [
@@ -27,8 +37,22 @@ var colorArray = [
 ];
 var rainDropArray = []
 
-//Draw Functions:
 
+window.onload = instructions()
+
+//TODO: create instruction page
+function instructions()
+{
+    c.fillStyle = "red";
+    c.fillRect(0,0,canvas.width, canvas.height);
+    window.alert("instruction method!");
+}
+
+//===========================
+//-------- Functions---------
+//===========================
+
+//Draws background (including hills and clouds)
 function background()
 {
     c.fillStyle = "#bed9ed";
@@ -37,6 +61,7 @@ function background()
     hills();
 }
 
+//Draws clouds near the top of the screen
 function clouds()
 {
     c.strokeStyle = "#96b2d9";
@@ -50,6 +75,7 @@ function clouds()
     }
 }
 
+//Draw hills near the bottom of the screen
 function hills()
 {
     for (let x = 0; x < canvas.width; x = x + 0.5)
@@ -63,11 +89,13 @@ function hills()
     }
 }
 
+//Returns a random color from the colorArray
 function randomColor()
 {
     return Math.round(Math.random()*colorArray.length-1);
 }
 
+//Draws flowers
 function dFlower(centerX, centerY, radius, numPetals, color){
     this.centerX = centerX;
     this.centerY = centerY;
@@ -101,7 +129,32 @@ function dFlower(centerX, centerY, radius, numPetals, color){
 
 }
 
-//Class Functions
+//Calculates Time Played
+function timeElapsed()
+{
+    var time = new Date() - start;
+    return time = time / 1000
+}
+
+//Calculates score
+function calculateScore()
+{
+    if (flowers.length > 0)
+    {
+        time = timeElapsed();
+        score = (-0.5) * time + (-1.5) * rainDropped + (100) * Math.floor(canvas.width / 75) + (3) * Math.floor(canvas.width / 75); 
+        //Score goes down with time and it is more penalty to drop more rain
+        //Starts at a max of 100 * number of flowers (this is done because the size of the screen can vary)
+        //Extra 3 per flower is given back to negate all the rain dropped and lost points for that actually hit a flower
+        score = Math.floor(score);
+    }
+    return score;
+}
+
+//===========================
+//------Object Classes-------
+//===========================
+
 class Flower
 {
     constructor(number,x,y,velocity, color)
@@ -113,16 +166,13 @@ class Flower
         this.color = color
     }
 
-    draw() {
+    draw() 
+    {
        dFlower(this.x,this.y, 50, 6, this.color);
-      }
+    }
 
-      check()
-      {
-      }
-
-      update()
-      {
+    update()
+    {
         this.draw();
         if (this.x > canvas.width)
         {
@@ -130,7 +180,33 @@ class Flower
         }
         this.x += this.velocity;
         this.y = canvas.height - (Math.sin(this.x * 0.030) * 30) - 160;
-      }
+    }
+}
+
+class Cactus
+{
+    constructor(x,y,velocity)
+    {
+        this.x = x + 18;
+        this.y = y;
+        this.velocity = velocity;
+    }
+
+    draw() 
+    {
+        c.drawImage(cactusImage, this.x, this.y, 75, 75);
+    }
+
+    update()
+    {
+        this.draw();
+        if (this.x > canvas.width)
+        {
+            this.x = 0;
+        }
+        this.x += this.velocity;
+        this.y = canvas.height - (Math.sin(this.x * 0.030) * 30) - 195;
+    }
 }
 
 class RainCloud
@@ -147,7 +223,7 @@ class RainCloud
 
       launch()
       {
-        if (rainDropArray.length < 5)
+        if (rainDropArray.length < 3)
         rainDropArray.push(new Rain(this.x + 75 , 150, 0.5));
       }
 
@@ -167,6 +243,7 @@ class Rain
         this.x = x;
         this.y = y;
         this.velocity = rainVelocity;
+        this.notHit = true;
     }
     draw()
     {
@@ -185,6 +262,12 @@ class Rain
         if (this.y > canvas.height - (Math.sin(this.x * 0.03) * 30) - 150)
         {
             rainDropArray.shift();
+            if (this.notHit)
+            {
+                new Audio('water.mp3').play()
+                console.log('water');
+            }
+                
         }
     }
     check()
@@ -193,21 +276,24 @@ class Rain
         {
             var flowerX = flowers[f].x;
             var flowerY = flowers[f].y;
-            console.log("FlowerX: " + flowerX + ", FlowerY:" + flowerY);
-            console.log("rainX: " + this.x + ", rainY:" + this.y);
 
             if (flowerX + 10 > this.x && flowerX - 10 < this.x
                 && flowerY + 10 > this.y && flowerY - 10 < this.y)
             {
-                console.log("hit");
+                new Audio('grow.mp3').play()
                 flowers.splice(f,1);
+                setTimeout(()=>{this.notHit = false}, 500);
+                console.log("hit");
+
             }
         }
     }
 }
 
+//===========================
+//-----Moving Functions------
+//===========================
 
-//Moving Functions
 window.addEventListener('keyup', (e) => {
     switch(event.key)
     {
@@ -218,10 +304,15 @@ window.addEventListener('keyup', (e) => {
             rCloud.velocity = -2;
             break;
         case ' ':
-                rCloud.launch();
-                break;
+            rCloud.launch();
+            rainDropped++;
+            break;
     }
 });
+
+//===========================
+//-----General Functions-----
+//===========================
 
 function init()
 {
@@ -229,40 +320,55 @@ function init()
   {
     flowers.push(new Flower(k, 0 + 75 * k, 500, 2.5, colorArray[randomColor()]))
   }
+  cactus = new Cactus (25, 500, 2.5)
+  rCloud = new RainCloud (canvas.width / 2, 0)
 }
-
-rCloud = new RainCloud (canvas.width / 2, 0)
 
 function animate() {
     window.requestAnimationFrame(animate);
-    score++;
     background();
     flowers.forEach((flower,i)=>{
         flower.update();
     });
-    rainDropArray.forEach((rain)=> {rain.update()})
     
+    rainDropArray.forEach((rain)=>{
+        rain.update()
+    })
 
     rCloud.update();
+
     for (let j = 0; j < rainDropArray.length; j++)
     {
         rainDropArray[j].update();
     }
+    // cactus.update();
+    //Uncomment this out to fix cactus
 
     if (flowers.length === 0)
     {
         c.font = "40px sans-serif";
         c.fillStyle = "#3155a8";
-        c.fillText("You Win!", canvas.width / 2 - 75, canvas.height * 0.3)
+        c.fillText("You Win!", canvas.width / 2 - 75, canvas.height * 0.4)
+        new Audio('win.mp3').play()
+        //TODO: Play audio after winning
+        c.font = "30px sans-serif";
+        c.fillText("Score: " + calculateScore(), canvas.width / 2 - 75, canvas.height * 0.45)
+
         rCloud.x = canvas.width / 2 - 75;
         rCloud.velocity = 0;
     }
+    console.log(calculateScore());
+
 }
+
 init();
 animate();
 
 
-//other stuff
+//=======================================
+//-----Other Stuff (messing around)------
+//=======================================
+
 
 //draw sine wave
 // for (let x = 0; x < canvas.width; x = x + 0.5)

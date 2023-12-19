@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HL I Comp Sci Homepage</title>
+        <style>
+            h1
+            {
+                align-items: center;
+                font-size: 24px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            h3
+            {
+                align-items: center;
+                font-size: 14px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            body
+            {
+                margin: 0;
+                padding: 0;
+                background-color: rgb(139, 177, 230);
+                text-align: center;
+            }
+            button
+            {
+                background-color: rgb(205, 205, 247);
+            }
+            table, th, td 
+            {
+                border: 5px solid rgb(139, 177, 230);
+
+            }          
+            th, td 
+            {
+                background-color: #657fb4a5;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src = "homepage.js"></script>
+        <h1> HL I Computer Science Projects </h1>
+       <br>
+        <table width = "100%" height = "100px">
+            <tr>
+
+                <td> 
+                    <img src = "homepage_images/agario.png" alt = "AgarIO image" width="200px" height = "150px">
+                    <h3>AgarIO is a game that ....</h3>
+                    <button class=button onclick = "agarIO()"> AgarIO </button>
+                </td>
+
+                <td>
+                    <img src = "homepage_images/placeholder.png" alt = "placeholder" width="200px" height = "150px">
+                    <h3>Garden Game is a game that ....</h3>
+                    <button class=button onclick = "gardenGame()"> Garden Game </button>
+                </td>
+
+                <td> 
+                    <img src = "homepage_images/placeholder.png" alt = "placeholder" width="200px" height = "150px">
+                    <h3>Typing Game is a game that ....</h3>
+                    <button class=button onclick = "typingGame()"> Typing Game </button>
+                </td>
+            </tr>
+            <tr>
+                <td> Row 2 Column 1</td>
+                <td> Row 2 Column 2</td>
+                <td> Row 2 Column 3</td>
+            </tr>
+        </table>
+        
+        <canvas></canvas>        
+    </body>
+</html>
