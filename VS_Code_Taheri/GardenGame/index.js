@@ -11,7 +11,7 @@ imageCloud.src = 'cloud.png';
 const cactusImage = new Image();
 cactusImage.src = 'cactus.png';
 
-window.alert("Instructions! \nYou are the rain cloud and can move side to side with the arrow key. You're goal is to rain on the flowers but not the cacti. To rain, use the space bar and only 3 can spawn at one time. Good luck!");
+window.alert("Instructions! \nYou are the rain cloud and can move side to side with the arrow key. You're goal is to rain on the flowers but not the cacti. To rain, use the space bar and only 3 can spawn at one time. It's recommended to turn your sound up! Good luck!");
 
 
 //TODO:
