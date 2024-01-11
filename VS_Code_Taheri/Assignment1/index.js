@@ -10,9 +10,6 @@ drawLetters();
 // drawStar();
 // nStarEndpoints(20, 0, 2*pi, "#328da8");
 
-
-
-
 function nStarEndpoints(n, s, e, color)
 {
     s = s + (0.5 * pi);
@@ -38,7 +35,6 @@ function nStarEndpoints(n, s, e, color)
         // c.fill();
     }
 }
-
 
 function drawStar()
 {
@@ -144,8 +140,6 @@ function dashedSpikes(n, s, e)
     }
 }
 
-
-
 function drawLetters()
 {
     letterBox(75,  75, "#ff8080", "a");
@@ -169,7 +163,6 @@ function letterBox (x,y, hexcolor, letter)
     c.fillStyle = "#FFF";
     c.fillText(letter, x+14, y+75);
 }
-
 
 function drawTicTacToe()
 {

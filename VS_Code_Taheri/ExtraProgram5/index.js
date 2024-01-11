@@ -4,6 +4,7 @@ const c = ctx.getContext('2d');
 ctx.width = 1024;
 ctx.height = 576;
 const pi = Math.PI;
+color = "red"
 
 // prompt1();
 
