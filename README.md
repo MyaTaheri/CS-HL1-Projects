@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Mya Taheri</h1>
+<h1 align="center">Hi, I'm Mya Taheri</h1>
 <h3 align="center">A Student taking IB Computer Science Higher Level 1</h3>
 
 <h3 align="left">Connect with me:</h3>
