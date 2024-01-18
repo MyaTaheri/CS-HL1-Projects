@@ -65,7 +65,7 @@ public class DatingGui extends JFrame implements ActionListener
 				double partnerAge = (yourAge / 2) - 7;
 				double oldestAge = partnerAge + yourAge;
 				double youngestAge = yourAge - partnerAge;
-				resultLabel.setText("Hi " + name + ", the range of people you can date is " + oldestAge + " - " + youngestAge);
+				resultLabel.setText("Hi " + name + ", the range of people you can date is " + oldestAge + " - " + youngestAge + ".");
 			}
 			
 		}
