@@ -1,4 +1,4 @@
-package CaeserCipher;
+package CaeserCipherGui;
 
 
 import java.awt.event.ActionEvent;
@@ -23,7 +23,8 @@ public class CaeserCipher extends JFrame implements ActionListener
    //constructor
 	public CaeserCipher() {
 		super("CaeserCipher");
-		setSize(800,800);
+		setSize(450,650);
+        this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 
@@ -87,13 +88,21 @@ public class CaeserCipher extends JFrame implements ActionListener
 
             for (int i = 0; i < originalString.length(); i++)
             {
-                int orginalLetter = ALPHABET.indexOf(originalString.charAt(i));
-                int newLetter = (orginalLetter - shift) % 26;
-                if (newLetter < 0) 
+                int originalLetter = ALPHABET.indexOf(originalString.charAt(i));
+                //TODO: Fix when using white space
+                if (originalLetter < 0)
                 {
-                    newLetter = 26 + newLetter;
+                    decryptStr = decryptStr + " ";
                 }
-                decryptStr = decryptStr + ALPHABET.charAt(newLetter);
+                else
+                {
+                    int newLetter = (originalLetter - shift) % 26;
+                    if (newLetter < 0) 
+                    {
+                        newLetter = 26 + newLetter;
+                    }
+                    decryptStr = decryptStr + ALPHABET.charAt(newLetter);
+                }
             }
 
             resultLabel.setText("Result: " + phraseField.getText() + " is decrypted to " + decryptStr);

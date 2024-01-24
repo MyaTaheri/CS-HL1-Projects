@@ -1,4 +1,4 @@
-package CaeserCipher;
+package CaeserCipherGui;
 
 public class CaeserCipherDriver 
 {
