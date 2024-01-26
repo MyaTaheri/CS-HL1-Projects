@@ -1,11 +1,13 @@
-package CaeserCipherGui;
+package CaeserCipherFile;
 
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +23,7 @@ public class CaeserCipher extends JFrame implements ActionListener
     private JTextField phraseField;
 	private JLabel resultLabel;
 	private JTextField shiftNum;
+    private String encryptString = "";
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
    //constructor
@@ -32,7 +35,7 @@ public class CaeserCipher extends JFrame implements ActionListener
 		setLayout(null);
 
 
-        Color backgroundColor = new Color(203, 238, 245);
+        Color backgroundColor = new Color(146, 194, 224);
         getContentPane().setBackground(backgroundColor);
 
 		JLabel decryptedLabel = new JLabel("Enter in a phrase");
@@ -51,10 +54,6 @@ public class CaeserCipher extends JFrame implements ActionListener
             encryptButton.setBounds(40,240,75,50);
             encryptButton.addActionListener(this);
 			add(encryptButton);
-        JButton decryptButton = new JButton("Decrypt");
-            decryptButton.setBounds(300,240,75,50);
-            decryptButton.addActionListener(this);
-            add(decryptButton);
 
 		resultLabel = new JLabel();
 			resultLabel.setBounds(100,500,500,25);
@@ -79,35 +78,25 @@ public class CaeserCipher extends JFrame implements ActionListener
             }
 
             resultLabel.setText("Result: " + phraseField.getText() + " is encrypted to " + encryptedStr);
-		}
-
-        if(e.getActionCommand().equals("Decrypt"))
-		{
-            String originalString = phraseField.getText().toLowerCase();
-
-            int shift = Integer.parseInt(shiftNum.getText());
-            String decryptStr = "";
-
-            for (int i = 0; i < originalString.length(); i++)
-            {
-                int originalLetter = ALPHABET.indexOf(originalString.charAt(i));
-                //TODO: Fix when using white space
-                if (originalLetter < 0)
-                {
-                    decryptStr = decryptStr + " ";
-                }
-                else
-                {
-                    int newLetter = (originalLetter - shift) % 26;
-                    if (newLetter < 0) 
-                    {
-                        newLetter = 26 + newLetter;
-                    }
-                    decryptStr = decryptStr + ALPHABET.charAt(newLetter);
-                }
-            }
-
-            resultLabel.setText("Result: " + phraseField.getText() + " is decrypted to " + decryptStr);
-		}   
+            this.encryptString = encryptedStr;
+        }
+        writeWordToFile();
 	}
+     
+    public void writeWordToFile()
+    {
+        PrintWriter outputStream = null;
+        try
+        {
+            outputStream = new PrintWriter(new FileOutputStream("caesercipher.txt", true));
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Err 404: File Not Found");
+            System.exit(0);
+        }
+        outputStream.println(phraseField.getText());
+        outputStream.println(encryptString);
+        outputStream.close();
+    }
 }
