@@ -1,0 +1,100 @@
+Oklahoma
+Oklahoma City
+Montana
+Helena
+Florida
+Tallahassee
+Texas
+Austin
+Wisconsin
+Madison
+Alaska
+Juneau
+Kentucky
+Frankfort
+Georgia
+Atlanta
+Iowa
+Des Moines
+West Virginia
+Charleston
+Connecticut
+Hartford
+Nebraska
+Lincoln
+Illinois
+Springfield
+South Carolina
+Columbia
+Rhode Island
+Providence
+Nevada
+Carson City
+Arizona
+Phoenix
+Michigan
+Lansing
+Kansas
+Topeka
+New York
+Albany
+Arkansas
+Little Rock
+New Mexico
+Santa Fe
+North Dakota
+Bismarck
+Ohio
+Columbus
+Mississippi
+Jackson
+North Carolina
+Raleigh
+Hawaii
+Honolulu
+Louisiana
+Baton Rouge
+Delaware
+Dover
+New Hampshire
+Concord
+Idaho
+Boise
+Alabama
+Montgomery
+Maine 
+Augusta
+Vermont 
+Montpelier
+Minnesota 
+St. Paul
+Virginia 
+Richmond
+Washington 
+Olympia
+Oregon 
+Salem
+Colorado 
+Denver
+South Dakota 
+Pierre
+California 
+Sacramento
+Indiana 
+Indianapolis
+Missouri 
+Jefferson City
+Maryland 
+Annapolis
+Utah 
+Salt Lake City
+New Jersey 
+Trenton
+Wyoming 
+Cheyenne
+Tennessee
+Nashville
+Massachusetts 
+Boston
+Pennsylvania 
+Harrisburg
