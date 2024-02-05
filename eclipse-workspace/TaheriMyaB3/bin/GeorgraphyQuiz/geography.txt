@@ -62,39 +62,39 @@ Idaho
 Boise
 Alabama
 Montgomery
-Maine 
+Maine
 Augusta
-Vermont 
+Vermont
 Montpelier
-Minnesota 
+Minnesota
 St. Paul
-Virginia 
+Virginia
 Richmond
-Washington 
+Washington
 Olympia
-Oregon 
+Oregon
 Salem
-Colorado 
+Colorado
 Denver
-South Dakota 
+South Dakota
 Pierre
-California 
+California
 Sacramento
-Indiana 
+Indiana
 Indianapolis
-Missouri 
+Missouri
 Jefferson City
-Maryland 
+Maryland
 Annapolis
-Utah 
+Utah
 Salt Lake City
-New Jersey 
+New Jersey
 Trenton
-Wyoming 
+Wyoming
 Cheyenne
 Tennessee
 Nashville
-Massachusetts 
+Massachusetts
 Boston
-Pennsylvania 
+Pennsylvania
 Harrisburg
