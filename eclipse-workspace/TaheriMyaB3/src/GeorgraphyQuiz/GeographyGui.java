@@ -17,7 +17,7 @@ import java.awt.*;
 
 public class GeographyGui extends JFrame implements ActionListener
 {
-    private File file = new File ("/Users/mt25190/Desktop/CS-HL1-Projects/eclipse-workspace/TaheriMyaB3/src/GeorgraphyQuiz/geography.txt");
+    private File file = new File ("/Users/mt25190/Desktop/CS-HL1-Projects/geography.txt");
     private JTextField stateField;
     private JLabel questionLabel;
 	private JLabel capitalLabel;
@@ -133,7 +133,7 @@ public class GeographyGui extends JFrame implements ActionListener
             System.out.println("Add question button");
             outputStream.println(stateField.getText());
             outputStream.println(capitalField.getText());
-            outputStream.close();
+            outputStream.flush();
         }
     }
 
