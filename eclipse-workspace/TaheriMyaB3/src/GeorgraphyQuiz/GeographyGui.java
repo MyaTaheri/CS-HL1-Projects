@@ -23,6 +23,7 @@ public class GeographyGui extends JFrame implements ActionListener
 	private JLabel capitalLabel;
 	private JTextField capitalField;
     private JLabel resultLabel;
+    private JLabel correctLabel;
     static Scanner scnr = null;
     private int correct = 0;
     String state = "United States";
@@ -67,14 +68,22 @@ public class GeographyGui extends JFrame implements ActionListener
             questionButton.addActionListener(this);
             add(questionButton);
 
+        correctLabel = new JLabel("");
+            correctLabel.setBounds(50,450,500,25);
+            correctLabel.setFont(new Font("Serif", Font.PLAIN, 16));
+			add(correctLabel);
+
+        
 		resultLabel = new JLabel("Score: XX");
-			resultLabel.setBounds(100,500,500,25);
+			resultLabel.setBounds(150,500,500,25);
             resultLabel.setFont(new Font("Serif", Font.PLAIN, 20));
 			add(resultLabel);
 
+
         ImageIcon imageIcon = new ImageIcon("earth.gif");
-        JLabel gif = new JLabel(imageIcon);
-            gif.setBounds(150, 500, 100, 100);
+        JLabel gif = new JLabel();
+            gif.setIcon(imageIcon);
+            gif.setBounds(100, 100, 200, 200);
             add(gif);
             
 
@@ -104,6 +113,11 @@ public class GeographyGui extends JFrame implements ActionListener
             if (capitalField.getText().equalsIgnoreCase(capital))
             {
                 correct++;
+                correctLabel.setText("Correct!");
+            }
+            else
+            {
+                correctLabel.setText("Incorrect: The capital of " + state + " is " + capital);
             }
             resultLabel.setText ("Score: " + correct + " correct");
             System.out.println("Checked Score");
