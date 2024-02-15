@@ -38,8 +38,8 @@ public class TableExample2 extends JFrame implements ActionListener
         nameField= new JTextField(10);
             nameField.setBounds(150,155,100,40);
             add(nameField);
-        dataLabel = new JLabel("testing");
-            dataLabel.setBounds(270,155,100,40);
+        dataLabel = new JLabel("");
+            dataLabel.setBounds(270,155,400,40);
             add(dataLabel);
     }
 
@@ -53,7 +53,18 @@ public class TableExample2 extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Search"))
 		{
-            dataLabel.setText("searching");
+            String name = nameField.getText();
+            for (int c = 0; c < dataTable.getColumnCount(); c++)
+            {
+                for (int r = 0; r < dataTable.getRowCount(); r++)
+                {
+                    if (name.equalsIgnoreCase(dataTable.getValueAt(r, c).toString()))
+                    {
+                        System.out.println( r + " " + c);
+                        dataLabel.setText(name + " is going to " + dataTable.getValueAt(r, 1).toString());
+                    }
+                }
+            }
         }
         
     }
