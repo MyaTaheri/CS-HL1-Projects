@@ -88,7 +88,7 @@ public class CaeserCipher extends JFrame implements ActionListener
         PrintWriter outputStream = null;
         try
         {
-            outputStream = new PrintWriter(new FileOutputStream("caesercipher.txt", true));
+            outputStream = new PrintWriter(new FileOutputStream("caesercipher.doc", true));
         }
         catch(FileNotFoundException e)
         {
