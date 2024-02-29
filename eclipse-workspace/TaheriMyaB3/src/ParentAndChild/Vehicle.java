@@ -6,7 +6,10 @@ public class Vehicle
     private String name;
     private int wheel;
 
-    //polymorphism - multiple methods with the sname name but different parameters
+    //polymorphism - multiple methods with the same name 
+        //overloading - polymorphism but the parameters are different
+        //overriding - within different classes trhough inheritence
+            //the child method overides that parent class
     public Vehicle()
     {
         //default case

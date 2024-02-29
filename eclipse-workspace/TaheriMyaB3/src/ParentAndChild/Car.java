@@ -1,6 +1,7 @@
 package ParentAndChild;
 
-//inheritence
+//inheritence - parent and child classes
+//extend and super keywords
 public class Car extends Vehicle
 {
     private double insideArea;
@@ -18,3 +19,9 @@ public class Car extends Vehicle
         System.out.println("Hola ");
     }
 }
+
+//encapsulation - private, protected, public
+//the restriction of data for only classes and packages
+
+//abstraction - hides the processes and the underlying working of the code
+//examples: Math.random(), how a car starts
