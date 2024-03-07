@@ -1,4 +1,4 @@
-package RemoteServerSockets;
+package GuessingGameServer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,24 +11,25 @@ import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JOptionPane;
 
 public class Client 
+//Guessing Game where the Client Guesses a number and the serve tell it higher or lower
 {
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
     private final String SERVER_ADDRESS = "10.1.8.213"; //sam
     private boolean check;
+    final int PORT = 8080;
+
     
     public Client()
     {
-        final int PORT = 8080;
-
         try{
             //create the client socket and connect with the server
             socket = new Socket(SERVER_ADDRESS, PORT);
             //create input and output streams
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
-            String message = JOptionPane.showInputDialog("message?");
+            String message = JOptionPane.showInputDialog("Guess a number: ");
             out.println(message);
             guess();
 
@@ -74,7 +75,7 @@ public class Client
             }
             else
             {
-                System.out.println("Guessed correct!");
+                JOptionPane.showMessageDialog(null, messageFromServer);
             }                        
         
     } catch (IOException e) {
