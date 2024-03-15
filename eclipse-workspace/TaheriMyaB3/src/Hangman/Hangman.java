@@ -58,6 +58,7 @@ public class Hangman {
     }
     
 
+    //https://www.programiz.com/java-programming/enhanced-for-loop
     public static void printArray() {
         for (char c : answerArray) {
             System.out.print(c + " ");
