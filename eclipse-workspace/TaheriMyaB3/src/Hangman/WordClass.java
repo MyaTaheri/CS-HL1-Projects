@@ -4,12 +4,11 @@ import java.util.Random;
 
 public class WordClass 
 {
-    String[] latinList = {"amor", "vita", "lux", "veritas", "pax", "terra", "fides", "bellum", "fortuna", "tempus", "caelum", "mors", "ars", "natura", "aeternitas", "scientia", "libertas", "salus", "amicus", "aequitas", "sapientia", "gloria", "otium", "honos", "somnium"};
     String word;
 
-    public void setWord() {
-        int randomInt = (int)Math.floor(Math.random() * (latinList.length));
-        this.word = latinList[randomInt];
+    public void setWord(String[] list) {
+        int randomInt = (int)Math.floor(Math.random() * (list.length));
+        this.word = list[randomInt];
     }
 
     public String getWord()

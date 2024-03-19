@@ -2,14 +2,19 @@ package Hangman;
 
 import java.util.Scanner;
 
-public class Hangman {
-    static Scanner scnr = new Scanner(System.in);
-    static int guesses = 10;
-    static WordClass wordClass = new WordClass();
-    static char[] answerArray;
+//CREATE A "DRIVER" CLASS TO ALPHA TEST
 
-    public static void main(String[] args) {
-        wordClass.setWord();
+public class Hangman {
+    //class vairbales, instantce, globabl variables
+
+    private static Scanner scnr = new Scanner(System.in);
+    private static int guesses;
+    private static WordClass wordClass;
+    private static char[] answerArray;
+    private static String[] latinList = {"amor", "vita", "lux", "veritas", "pax", "terra", "fides", "bellum", "fortuna", "tempus", "caelum", "mors", "ars", "natura", "aeternitas", "scientia", "libertas", "salus", "amicus", "aequitas", "sapientia", "gloria", "otium", "honos", "somnium"};
+
+ public static void main(String[] args) {
+        wordClass.setWord(latinList);
         String word = wordClass.getWord();
         int wordLength = word.length();
         //Clears screen from terminal lines in VSCode
