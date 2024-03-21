@@ -3,7 +3,7 @@ public class Hangman2
 
 {
 	//class variable, instance variables, global variables
-	private String [] words = {"Sam","MyaT","Samule"};
+	private String [] words = {"hola","adios","tampoco"};
 	private String word;
 	private int len;
 	private char [] answerArray,guessArray;
