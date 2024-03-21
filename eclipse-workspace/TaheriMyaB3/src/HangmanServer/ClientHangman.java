@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JOptionPane;
 
 public class ClientHangman 
@@ -34,11 +32,15 @@ public class ClientHangman
             PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
 
             JOptionPane.showMessageDialog(null, inC.readLine());
-            for (int k = 0; k < 7; k++)
+            boolean gameOver = false;
+
+            do
             {
                 String letterGuess = JOptionPane.showInputDialog(inC.readLine());
                 out.println(letterGuess);
-            }
+                gameOver = Boolean.parseBoolean(inC.readLine());
+
+            } while(gameOver == false);
 
         }
         catch (IOException e)

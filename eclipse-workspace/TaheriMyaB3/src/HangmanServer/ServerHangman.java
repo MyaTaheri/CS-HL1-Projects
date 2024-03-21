@@ -43,6 +43,8 @@ public class ServerHangman
             {
                 out.println(game.getGuessArray() + " What Letter?");
                 game.checkAnswerArray(in.readLine());
+                gameOver = game.endGame();
+                out.println(gameOver);
             }
 
             in.close();

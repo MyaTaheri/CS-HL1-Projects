@@ -32,7 +32,7 @@ public class Hangman2
 	{
 		for(int k=0; k<len; k++) 
 		{
-			guessArray[k]= '#' ;
+			guessArray[k]= '▢' ;
 			answerArray[k]=word.charAt(k);
 		}
 
@@ -71,5 +71,17 @@ public class Hangman2
 			    guessArray[k]=letter;
 			}
 		}
+	}
+
+	public boolean endGame()
+	{
+		for (int i = 0; i < guessArray.length; i++)
+		{
+			if (guessArray[i] == '▢')
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }
