@@ -35,7 +35,6 @@ public class Hangman2
 			guessArray[k]= '▢' ;
 			answerArray[k]=word.charAt(k);
 		}
-
 	}
 
 	public String getGuessArray() 
