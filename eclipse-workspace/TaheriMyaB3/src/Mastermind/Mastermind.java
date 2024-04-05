@@ -2,25 +2,37 @@ package Mastermind;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Mastermind 
 {
-    private int turn;
+    private int turn = 0;
     private String[][] board = new String[8][4];
     private String [] answer = new String[4];
-    private String [] rightSpots;
+    private int rightSpotRightColor = 0;
     private boolean won;
-    private int rightSpot;
-    private static final int BROWN = 0, RED = 1, BLUE = 2, ORANGE = 3, YELLOW = 4;
+    private static final int BROWN = 0, RED = 1, BLUE = 2, PURPLE = 3, YELLOW = 4;
     private ArrayList<Integer> colors = new ArrayList<>();
-    
+    private String[] guessResults = {"", "", "", "", "", "", "", ""};
+    HashMap<String, String> colorsMap = new HashMap<String, String>();
+
+
     public Mastermind()
     {  
+        //for random colors
         colors.add(BROWN);
         colors.add(RED);
         colors.add(BLUE);
-        colors.add(ORANGE);
+        colors.add(PURPLE);
         colors.add(YELLOW);
+
+        //emoji moment
+        colorsMap.put("brown", "🤎");
+        colorsMap.put("red", "💔");
+        colorsMap.put("blue", "💙");
+        colorsMap.put("purple", "💜");
+        colorsMap.put("yellow", "💛");
+
         setAnswer();
         fillBoard();
     }
@@ -47,7 +59,7 @@ public class Mastermind
             }
             else if (currentColor == 3)
             {
-                answer[i] = "orange";
+                answer[i] = "purple";
             }
             else if (currentColor == 4)
             {
@@ -79,7 +91,7 @@ public class Mastermind
     }
 
     public String getBoard()
-    {
+    {        
        String screen = "";
        
        for (int r = 0; r < 8; r++)
@@ -89,22 +101,58 @@ public class Mastermind
             {
                 screen = screen + " " + this.board[r][c];
             }
+            screen = screen + " " + guessResults[r];
             screen = screen + "\n";
-
         }
-
         return screen;
-       
     }
 
     public void setGuess(String col1, String col2, String col3, String col4)
     {
-        //compare the logic here
+        this.rightSpotRightColor = 0;
+        int wrongSpotRightColor = 0;
 
+        for (int i = 0; i < 4; i++)
+        {
+            if (col1 == answer[i] || col2 == answer[i] || col3 == answer[i] || col4 == answer[i])
+            {
+                wrongSpotRightColor++;
+            }
+        }
+
+        if (col1 == answer[0])
+        {
+            rightSpotRightColor++;
+        }
+        if (col2 == answer[1])
+        {
+            rightSpotRightColor++;
+        }
+        if (col3 == answer[2])
+        {
+            rightSpotRightColor++;
+        }
+        if (col4 == answer[3])
+        {
+            rightSpotRightColor++;
+        }
+
+        wrongSpotRightColor -= rightSpotRightColor;
+
+        board[turn][0] = colorsMap.get(col1);
+        board[turn][1] = colorsMap.get(col2);
+        board[turn][2] = colorsMap.get(col3);
+        board[turn][3] = colorsMap.get(col4);
+        guessResults[this.turn] = "   " + rightSpotRightColor + " are in the right spot. " + wrongSpotRightColor + " are in the wrong spot, but right color. ";
+
+        turn++;
+        
     }
-
+    
     public Boolean getWon()
     {
+        if (this.rightSpotRightColor == 4)
+            won = true;
         return won;
     }
 }
