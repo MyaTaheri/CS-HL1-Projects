@@ -15,6 +15,11 @@ public class AlphaTest
        System.out.println("---------SHUFFLE------------");
        System.out.println("----------------------------");
        deck.printDeck();
+       deck.shuffle();
+       System.out.println("----------------------------");
+       System.out.println("---------SHUFFLE------------");
+       System.out.println("----------------------------");
+       deck.printDeck();
 
     }
     

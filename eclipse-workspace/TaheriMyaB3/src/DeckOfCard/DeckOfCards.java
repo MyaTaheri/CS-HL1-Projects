@@ -28,22 +28,39 @@ public class DeckOfCards
         }
     }
 
+    // public void shuffle()
+    // {
+    //     for (int i = 0; i < 100; i++)
+    //     {
+    //         int randNum1 = new Random().nextInt(52);
+    //         int randNum2 = new Random().nextInt(52);
+    //         String randCardSuit1 = deck[randNum1][1];
+    //         String randCardVal1 = deck[randNum1][0];
+    //         String randCardSuit2 = deck[randNum2][1];
+    //         String randCardVal2 = deck[randNum2][0];
+
+    //         deck[randNum2][1] = randCardSuit1;
+    //         deck[randNum2][0] = randCardVal1;
+
+    //         deck[randNum1][1] = randCardSuit2;
+    //         deck[randNum1][0] = randCardVal2;
+    //     }
+    // }
+
     public void shuffle()
     {
-        for (int i = 0; i < 100; i++)
+
+        for (int k = 52; k >= 2; k--)
         {
-            int randNum1 = new Random().nextInt(52);
-            int randNum2 = new Random().nextInt(52);
-            String randCardSuit1 = deck[randNum1][1];
-            String randCardVal1 = deck[randNum1][0];
-            String randCardSuit2 = deck[randNum2][1];
-            String randCardVal2 = deck[randNum2][0];
+            int randomInt = new Random().nextInt(k);
+            String tempSuit = deck[randomInt][1];
+            String tempVal = deck[randomInt][0];
 
-            deck[randNum2][1] = randCardSuit1;
-            deck[randNum2][0] = randCardVal1;
+            deck[randomInt][0] = deck[k-1][0];
+            deck[randomInt][1] = deck[k-1][1];
 
-            deck[randNum1][1] = randCardSuit2;
-            deck[randNum1][0] = randCardVal2;
+            deck[k-1][0] = tempVal;
+            deck[k-1][1] = tempSuit;
         }
     }
 
