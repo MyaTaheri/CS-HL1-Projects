@@ -28,24 +28,6 @@ public class DeckOfCards
         }
     }
 
-    // public void shuffle()
-    // {
-    //     for (int i = 0; i < 100; i++)
-    //     {
-    //         int randNum1 = new Random().nextInt(52);
-    //         int randNum2 = new Random().nextInt(52);
-    //         String randCardSuit1 = deck[randNum1][1];
-    //         String randCardVal1 = deck[randNum1][0];
-    //         String randCardSuit2 = deck[randNum2][1];
-    //         String randCardVal2 = deck[randNum2][0];
-
-    //         deck[randNum2][1] = randCardSuit1;
-    //         deck[randNum2][0] = randCardVal1;
-
-    //         deck[randNum1][1] = randCardSuit2;
-    //         deck[randNum1][0] = randCardVal2;
-    //     }
-    // }
 
     public void shuffle()
     {
@@ -67,13 +49,40 @@ public class DeckOfCards
     public void getCard()
     {
         System.out.println(nextCard());
-        currentCardNum++;
     }
 
     public String nextCard()
     {
         String card = deck[currentCardNum][0] + " of " + deck[currentCardNum][1];
+        currentCardNum++;
         return card; 
+    }
+
+    public String getCardSuit()
+    {
+        System.out.println(deck[currentCardNum][1]);
+        return deck[currentCardNum][1];
+    }
+
+    public int cardValue(String card) {
+        //finds the first number by finding the String value before the first " "
+        String value = card.split(" ")[0];
+        switch (value) {
+            case "2": return 2;
+            case "3": return 3;
+            case "4": return 4;
+            case "5": return 5;
+            case "6": return 6;
+            case "7": return 7;
+            case "8": return 8;
+            case "9": return 9;
+            case "10": return 10;
+            case "Jack": return 11;
+            case "Queen": return 12;
+            case "King": return 13;
+            case "Ace": return 1;
+            default: return 0;
+        }
     }
 
     public void printDeck()
