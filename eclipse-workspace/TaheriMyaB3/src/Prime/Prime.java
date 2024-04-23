@@ -5,13 +5,13 @@ public class Prime {
     public static void main (String[] args)
     {
         int num = 1474747;
-        int primeSum = 0;
+        long primeSum = 0;
         for (int i = 2; i < num; i++)
         {
             if (checkPrime(i))
             {
                 primeSum += i;
-                System.out.println("prime sum: " + primeSum + "   i: " +  i);
+                // System.out.println("prime sum: " + primeSum + "   i: " +  i);
             }
         }
         System.out.println(primeSum);
