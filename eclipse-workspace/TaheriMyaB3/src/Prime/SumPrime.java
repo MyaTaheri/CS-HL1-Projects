@@ -1,7 +1,8 @@
 package Prime;
 
-public class Prime {
+public class SumPrime {
     
+    //What are the sum of all prime numbers less than 1474747
     public static void main (String[] args)
     {
         int num = 1474747;
