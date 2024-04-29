@@ -1,4 +1,4 @@
-package Prime;
+package NumberCodes;
 
 public class SumPrime {
     

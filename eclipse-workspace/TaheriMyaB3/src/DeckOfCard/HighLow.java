@@ -13,6 +13,7 @@ public class HighLow {
     private Color backgroundColor = new Color(155, 185, 232);
     private Color winColor = new Color(197, 235, 209);
     private Color loseColor = new Color(235, 200, 197);
+    private int cards = 0;
 
     public HighLow() {
         deck = new DeckOfCards();
@@ -50,6 +51,7 @@ public class HighLow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleGuess("higher", frame);
+                cards++;
             }
         });
 
@@ -57,6 +59,7 @@ public class HighLow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleGuess("lower", frame);
+                cards++;
             }
         });
 
@@ -64,12 +67,14 @@ public class HighLow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleGuess("equal", frame);
+                cards++;
             }
         });
 
         frame.getContentPane().setBackground(backgroundColor);
 
         frame.setVisible(true);
+        System.out.println(cards);
     }
 
     private void handleGuess(String guess, JFrame frame) {
@@ -105,7 +110,9 @@ public class HighLow {
 
         currentCard = nextCard;
 
-        if (correctGuesses + incorrectGuesses < 52) {
+        System.out.println(correctGuesses + incorrectGuesses);
+
+        if (correctGuesses + incorrectGuesses < 51) {
             guessPage();
         } else {
             displayFinalResult(frame);

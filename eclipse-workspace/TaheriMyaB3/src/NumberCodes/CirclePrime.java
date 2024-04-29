@@ -1,6 +1,8 @@
-package Prime;
+package NumberCodes;
 
 //How many circle primes less than 500,000
+
+//another possible solution, check all primes and then see if they are a circle prime
 public class CirclePrime
 {
     public static void main (String[] args)
