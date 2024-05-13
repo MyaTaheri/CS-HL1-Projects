@@ -27,9 +27,9 @@ public class HighLow {
     public void guessPage() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setSize(375, 200);
         frame.setLayout(null);
-        frame.setResizable(false);
 
 
         JLabel currentCardLabel = new JLabel("The current card is: " + currentCard);

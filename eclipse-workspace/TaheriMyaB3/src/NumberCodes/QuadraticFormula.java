@@ -10,7 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import QuadraticGraphing.GraphFrame;
+
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -48,7 +52,7 @@ public class QuadraticFormula extends JFrame implements ActionListener
             add(x2);
         bField = new JTextField(4);
             bField.setBackground(Color.YELLOW);
-            bField.setBounds(292,1,40, 20);
+            bField.setBounds(292,4,40, 20);
             bField.setVisible(true);
             add(bField);
         JLabel x = new JLabel("x + ");
@@ -77,17 +81,18 @@ public class QuadraticFormula extends JFrame implements ActionListener
             add(rootsLabel);
     }
    public static void main (String[] args) throws IOException
-   {
+    {
         QuadraticFormula gui = new QuadraticFormula();
         gui.setVisible(true);
-   }
-    public void actionPerformed(ActionEvent e)
+    }
+    
+   public void actionPerformed(ActionEvent e)
     {
         if(e.getActionCommand().equals("Solve"))
 		{
-            int a = Integer.parseInt(aField.getText());
-            int b = Integer.parseInt(bField.getText());
-            int c = Integer.parseInt(cField.getText());
+            double a = Double.parseDouble(aField.getText());
+            double b = Double.parseDouble(bField.getText());
+            double c = Double.parseDouble(cField.getText());
 
             double discrimant = Math.pow(b,2) - (4*a*c);
             System.out.println(discrimant);
@@ -107,10 +112,11 @@ public class QuadraticFormula extends JFrame implements ActionListener
             }
             else
             {
-                double root1 = (-b + Math.sqrt(discrimant)) / (2*a);
-                double root2 = (-b - Math.sqrt(discrimant)) / (2*a);
+                double root1 = (-b - Math.sqrt(discrimant)) / (2*a);
+                double root2 = (-b + Math.sqrt(discrimant)) / (2*a);
                 rootsLabel.setText("2 root at " + root1 + " and " + root2);
             }
-        }
+            new GraphFrame(a, b, c);
+        }  
     }
 }
