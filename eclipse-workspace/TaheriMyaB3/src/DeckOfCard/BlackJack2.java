@@ -9,16 +9,18 @@ public class BlackJack2 extends JFrame implements ActionListener {
     private DeckOfCards deck;
     private JButton playButton;
     private JButton hitButton;
-    private JButton foldButton;
+    private JButton standButton;
     private JLabel playerPointsLabel;
     private JLabel cardLabel;
     private int playerPoints;
+    private Color backgroundColor = new Color(209, 182, 185);
 
     public BlackJack2() {
         deck = new DeckOfCards();
         deck.shuffle();
 
-        // GUI setup
+        this.getContentPane().setBackground(backgroundColor);
+
         setTitle("Blackjack");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,16 +35,16 @@ public class BlackJack2 extends JFrame implements ActionListener {
         hitButton.setEnabled(false);
         add(hitButton);
 
-        foldButton = new JButton("Fold");
-        foldButton.addActionListener(this);
-        foldButton.setEnabled(false);
-        add(foldButton);
+        standButton = new JButton("Stand");
+        standButton.addActionListener(this);
+        standButton.setEnabled(false);
+        add(standButton);
 
         playerPointsLabel = new JLabel("Player Points: 0");
         add(playerPointsLabel);
 
         cardLabel = new JLabel("Card Drawn: n/a");
-        add( cardLabel);
+        add(cardLabel);
     }
 
     @Override
@@ -51,8 +53,8 @@ public class BlackJack2 extends JFrame implements ActionListener {
             playGame();
         } else if (e.getSource() == hitButton) {
             hit();
-        } else if (e.getSource() == foldButton) {
-            fold();
+        } else if (e.getSource() == standButton) {
+            stand();
         }
     }
 
@@ -61,13 +63,21 @@ public class BlackJack2 extends JFrame implements ActionListener {
 
         String playerCard1 = deck.nextCard();
         String playerCard2 = deck.nextCard();
-        playerPoints += deck.cardValue(playerCard1) + deck.cardValue(playerCard2);
+        if (deck.cardValue(playerCard1) > 10)
+            playerPoints += 10;
+        else
+            playerPoints += deck.cardValue(playerCard1);   
+        if (deck.cardValue(playerCard2) > 10)
+            playerPoints += 10;
+        else
+            playerPoints += deck.cardValue(playerCard2);
+            
         playerPointsLabel.setText("Player Points: " + playerPoints);
 
        
 
         hitButton.setEnabled(true);
-        foldButton.setEnabled(true);
+        standButton.setEnabled(true);
     }
 
     private void hit() {
@@ -86,7 +96,7 @@ public class BlackJack2 extends JFrame implements ActionListener {
 
     }
 
-    private void fold() {
+    private void stand() {
         if (playerPoints <= 21 && playerPoints >= 18) {
             JOptionPane.showMessageDialog(this, "Player win!");
             endGame();
@@ -97,11 +107,9 @@ public class BlackJack2 extends JFrame implements ActionListener {
     }
 
     private void endGame() {
-        // Disable hit and fold buttons
         hitButton.setEnabled(false);
-        foldButton.setEnabled(false);
+        standButton.setEnabled(false);
 
-        // Reset the deck
         deck.shuffle();
     }
 
